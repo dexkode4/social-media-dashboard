@@ -1,17 +1,19 @@
 :root {
-  --primary-color: #302ae6;
-  --secondary-color: #536390;
-  --font-color: #424242;
-  --bg-color: #fff;
-  --heading-color: #292922;
+  --primary-color-bg: hsl(0, 0%, 100%);
+  --primary-color-bg-top: hsl(225, 100%, 98%);
+  --card-color: hsl(227, 47%, 96%);
+  --font-color-sm: hsl(228, 12%, 44%);
+  --font-color-bg: hsl(230, 17%, 14%);
+  --font-color-green: hsl(163, 72%, 41%);
+  --font-color-red: hsl(356, 69%, 56%);
 }
 
 [data-theme="dark"] {
-  --primary-color: #9a97f3;
-  --secondary-color: #818cab;
-  --font-color: #e1e1ff;
-  --bg-color: #161625;
-  --heading-color: #818cab;
+  --primary-color-bg: hsl(230, 17%, 14%);
+  --primary-color-bg-top: hsl(232, 19%, 15%);
+  --card-color: hsl(228, 28%, 20%);
+  --font-color-sm: hsl(228, 34%, 66%);
+  --font-color-bg: hsl(0, 0%, 100%);
 }
 
 * {
@@ -21,39 +23,69 @@
 
 html {
   font-size: 62%;
-  color: $color-white;
+  color: var(--primary-color-bg);
+  box-sizing: border-box;
 }
 
 body {
   background: linear-gradient(
-    ($color-very-dark-blue-2) 0%,
-    ($color-very-dark-blue-2) 25%,
-    ($color-very-dark-blue) 25%
+    (var(--primary-color-bg-top)) 0%,
+    (var(--primary-color-bg-top)) 25%,
+    (var(--primary-color-bg)) 25%
   );
+  background: var(--primary-color-bg);
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Inter", sans-serif;
   height: 100vh;
   padding: 3rem 12rem 6rem 12rem;
-}
+  position: relative;
 
-.light {
-  background: $color-white !important;
-  color: $color-very-dark-blue;
+  @media only screen and (max-width: $break-point) {
+    padding: 3rem 5rem 5rem 5rem;
+  }
+}
+.container {
+  margin-bottom: 4rem;
+}
+.bg-top {
+  background: var(--primary-color-bg-top);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  z-index: -10;
+
+  @media only screen and (max-width: $break-point) {
+    border-bottom-left-radius: 5rem;
+    border-bottom-right-radius: 5rem;
+  }
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-
+  @media only screen and (max-width: $break-point) {
+    display: flex;
+    flex-wrap: wrap;
+  }
   &__title {
+    @media only screen and (max-width: $break-point) {
+      margin-top: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 0.1rem solid var(--font-color-sm);
+      width: 100%;
+    }
     & h2 {
       font-size: 2rem;
-      font-weight: 400;
+      font-weight: 700;
       margin-bottom: 0.5rem;
+      color: var(--font-color-bg);
     }
     & p {
-      color: $color-text-desaturated-blue;
+      color: var(--font-color-sm);
+      font-weight: 700;
     }
   }
   &__toggle {
@@ -61,10 +93,14 @@ body {
     & .theme-switch-wrapper {
       display: flex;
       align-items: center;
-
-      em {
+      @media only screen and (max-width: $break-point) {
+        justify-content: space-between;
+      }
+      p {
         margin-right: 10px;
-        font-size: 1rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: var(--font-color-bg);
       }
     }
     & .theme-switch {
@@ -72,13 +108,20 @@ body {
       height: 2.6rem;
       position: relative;
       width: 5.5rem;
+      @media only screen and (max-width: $break-point) {
+        display: block;
+        align-self: flex-end;
+      }
 
       & input:checked + .round:before {
-        background: $color-white;
+        background: var(--card-color);
+      }
+      & input:checked + .slider {
+        background: $color-toggle-dark;
       }
 
       & input:checked + .slider:before {
-        transform: translateX(2.8rem);
+        transform: translateX(-2.8rem);
       }
 
       & input {
@@ -86,7 +129,7 @@ body {
       }
 
       & .slider {
-        background: $color-toggle-dark;
+        background: $color-toggle-light;
         bottom: 0;
         cursor: pointer;
         left: 0;
@@ -96,11 +139,12 @@ body {
         transition: 0.4s;
 
         &::before {
-          background-color: $color-dark-desaturated-blue;
+          background-color: var(--primary-color-bg);
           bottom: 0.22rem;
           content: "";
           height: 2.1rem;
-          left: 0.3rem;
+
+          right: 0.3rem;
           position: absolute;
           transition: 0.4s;
           width: 2.1rem;
@@ -120,25 +164,33 @@ body {
 
 .card {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
   margin-top: 4rem;
+  justify-content: center;
+  width: 100%;
+  @media only screen and (max-width: $break-point) {
+    grid-template-columns: 1fr;
+    margin-top: 3.5rem;
+  }
+
   &-big {
     position: relative;
 
     &__change {
-      color: $color-primary-green;
+      color: var(--font-color-green);
       text-transform: capitalize;
       & img {
         transform: translateY(-50%);
       }
       &--red {
-        color: $color-primary-red;
+        color: var(--font-color-red);
       }
     }
     &__followers {
       font-size: 4.5rem;
       font-weight: 700;
+      color: var(--font-color-bg);
     }
     &__followers-text {
       text-transform: uppercase;
@@ -146,12 +198,12 @@ body {
       font-size: 1rem;
       font-size: 0.8rem;
       margin-bottom: 2rem;
-      color: $color-text-desaturated-blue;
+      color: var(--font-color-sm);
     }
 
     &__name {
-      color: $color-text-desaturated-blue;
-      font-size: 1.3rem;
+      color: var(--font-color-sm);
+      font-size: 1.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -176,7 +228,7 @@ body {
     border-top-right-radius: 0.8rem;
   }
   & > * {
-    background-color: $color-dark-desaturated-blue;
+    background-color: var(--card-color);
     border-radius: 0.4rem;
     text-align: center;
     padding: 2rem 3rem;
@@ -194,6 +246,60 @@ body {
   &-big--ig {
     &::before {
       background: $color-instagram;
+    }
+  }
+
+  &-small {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem 0;
+    align-items: center;
+
+    @media only screen and (max-width: $break-point) {
+      height: 10rem;
+      // align-self: end;
+    }
+    &__text {
+      justify-self: start;
+      color: var(--font-color-sm);
+      text-transform: capitalize;
+      font-weight: 400;
+      font-size: 1.2rem;
+    }
+    &__icon {
+      justify-self: end;
+      & img {
+        width: 80%;
+      }
+    }
+    &__num {
+      justify-self: start;
+      color: var(--font-color-bg);
+      font-size: 2.3rem;
+    }
+    &__change {
+      justify-self: end;
+    }
+  }
+}
+
+.overview {
+  color: var(--font-color-bg);
+  margin-top: 4rem;
+  font-weight: 400;
+  font-size: 1.3rem;
+  &__text {
+    margin: 0;
+  }
+}
+
+.theme-switch-wrapper {
+  @media only screen and (max-width: $break-point) {
+    margin-top: 2rem;
+  }
+  & label {
+    @media only screen and (max-width: $break-point) {
+      transform: translateX(13rem);
     }
   }
 }

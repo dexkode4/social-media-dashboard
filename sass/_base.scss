@@ -169,14 +169,26 @@ body {
   margin-top: 4rem;
   justify-content: center;
   width: 100%;
+
   @media only screen and (max-width: $break-point) {
     grid-template-columns: 1fr;
     margin-top: 3.5rem;
   }
+  & > * {
+    background-color: var(--card-color);
+    border-radius: 0.4rem;
+    text-align: center;
+    padding: 2rem 3rem;
+  }
 
   &-big {
     position: relative;
-
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.2s;
+    &:hover {
+      opacity: 0.7;
+    }
     &__change {
       color: var(--font-color-green);
       text-transform: capitalize;
@@ -227,12 +239,7 @@ body {
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
   }
-  & > * {
-    background-color: var(--card-color);
-    border-radius: 0.4rem;
-    text-align: center;
-    padding: 2rem 3rem;
-  }
+
   &-big--fb {
     border-top: 0.4rem solid $color-facebook;
   }
@@ -254,7 +261,11 @@ body {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem 0;
     align-items: center;
-
+    cursor: pointer;
+    transition: opacity 0.2s;
+    &:hover {
+      opacity: 0.7;
+    }
     @media only screen and (max-width: $break-point) {
       height: 10rem;
       // align-self: end;

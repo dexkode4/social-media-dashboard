@@ -175,8 +175,20 @@ body {
     margin-top: 3.5rem;
   }
 }
+.card > * {
+  background-color: var(--card-color);
+  border-radius: 0.4rem;
+  text-align: center;
+  padding: 2rem 3rem;
+}
 .card-big {
   position: relative;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+.card-big:hover {
+  opacity: 0.7;
 }
 .card-big__change {
   color: var(--font-color-green);
@@ -226,12 +238,6 @@ body {
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
 }
-.card > * {
-  background-color: var(--card-color);
-  border-radius: 0.4rem;
-  text-align: center;
-  padding: 2rem 3rem;
-}
 .card-big--fb {
   border-top: 0.4rem solid #198ff5;
 }
@@ -249,6 +255,11 @@ body {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem 0;
   align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.card-small:hover {
+  opacity: 0.7;
 }
 @media only screen and (max-width: 38.75em) {
   .card-small {

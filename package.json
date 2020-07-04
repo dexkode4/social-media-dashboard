@@ -1,0 +1,11 @@
+{
+  "name": "social-media-dashboard-with-theme-switcher-master",
+  "version": "1.0.0",
+  "description": "Frontendmentor challenge",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css"
+  },
+  "author": "Dexkode",
+  "license": "ISC"
+}

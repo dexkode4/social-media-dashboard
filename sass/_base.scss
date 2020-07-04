@@ -1,0 +1,199 @@
+:root {
+  --primary-color: #302ae6;
+  --secondary-color: #536390;
+  --font-color: #424242;
+  --bg-color: #fff;
+  --heading-color: #292922;
+}
+
+[data-theme="dark"] {
+  --primary-color: #9a97f3;
+  --secondary-color: #818cab;
+  --font-color: #e1e1ff;
+  --bg-color: #161625;
+  --heading-color: #818cab;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62%;
+  color: $color-white;
+}
+
+body {
+  background: linear-gradient(
+    ($color-very-dark-blue-2) 0%,
+    ($color-very-dark-blue-2) 25%,
+    ($color-very-dark-blue) 25%
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  padding: 3rem 12rem 6rem 12rem;
+}
+
+.light {
+  background: $color-white !important;
+  color: $color-very-dark-blue;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    & h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    & p {
+      color: $color-text-desaturated-blue;
+    }
+  }
+  &__toggle {
+    /*slider switch css */
+    & .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+
+      em {
+        margin-right: 10px;
+        font-size: 1rem;
+      }
+    }
+    & .theme-switch {
+      display: inline-block;
+      height: 2.6rem;
+      position: relative;
+      width: 5.5rem;
+
+      & input:checked + .round:before {
+        background: $color-white;
+      }
+
+      & input:checked + .slider:before {
+        transform: translateX(2.8rem);
+      }
+
+      & input {
+        display: none;
+      }
+
+      & .slider {
+        background: $color-toggle-dark;
+        bottom: 0;
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: 0.4s;
+
+        &::before {
+          background-color: $color-dark-desaturated-blue;
+          bottom: 0.22rem;
+          content: "";
+          height: 2.1rem;
+          left: 0.3rem;
+          position: absolute;
+          transition: 0.4s;
+          width: 2.1rem;
+        }
+        &.round {
+          border-radius: 34px;
+        }
+
+        &.round:before {
+          border-radius: 50%;
+          transition: all 0.3s;
+        }
+      }
+    }
+  }
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-gap: 3rem;
+  margin-top: 4rem;
+  &-big {
+    position: relative;
+
+    &__change {
+      color: $color-primary-green;
+      text-transform: capitalize;
+      & img {
+        transform: translateY(-50%);
+      }
+      &--red {
+        color: $color-primary-red;
+      }
+    }
+    &__followers {
+      font-size: 4.5rem;
+      font-weight: 700;
+    }
+    &__followers-text {
+      text-transform: uppercase;
+      letter-spacing: 0.5rem;
+      font-size: 1rem;
+      font-size: 0.8rem;
+      margin-bottom: 2rem;
+      color: $color-text-desaturated-blue;
+    }
+
+    &__name {
+      color: $color-text-desaturated-blue;
+      font-size: 1.3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      &-img {
+        margin-right: 1rem;
+        transform: translateY(10%);
+        & img {
+          width: 90%;
+        }
+      }
+    }
+  }
+  &-big::before {
+    content: "";
+    height: 0.4rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+  }
+  & > * {
+    background-color: $color-dark-desaturated-blue;
+    border-radius: 0.4rem;
+    text-align: center;
+    padding: 2rem 3rem;
+  }
+  &-big--fb {
+    border-top: 0.4rem solid $color-facebook;
+  }
+
+  &-big--tw {
+    border-top: 0.4rem solid $color-twitter;
+  }
+  &-big--yt {
+    border-top: 0.4rem solid $color-youtube;
+  }
+  &-big--ig {
+    &::before {
+      background: $color-instagram;
+    }
+  }
+}
